@@ -1,0 +1,20 @@
+spring:
+  #数据库的连接信息：5项，这里我是mysql8的连接信息
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/bigdata?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&allowMultiQueries=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource  #当前数据源操作类型
+    #以下省略druid的监控的一些配置。
+
+mybatis:
+  #匹配sql语句的映射文件的位置，classpat代表在resources下
+  mapper-locations: classpath:mapper/*.xml
+  #以下两个配置可以省略，然后在mapper映射文件中配置也是可以的。
+  #使用type-aliases-package中指定entity扫描包类让mybatis自定扫描到自定义的entity
+  type-aliases-package: com.ink.bigdata.bean
+  configuration:
+    # 开启驼峰uName自动映射到u_name
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

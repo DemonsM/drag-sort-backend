@@ -1,93 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ink.bigdata.mapper.TestMapper">
-    <resultMap id="BaseResultMap" type="com.ink.bigdata.bean.Test">
-        <!--@mbg.generated-->
-        <!--@Table test-->
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="project_id" property="projectId"/>
-        <result column="node" property="node"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-        <!--@mbg.generated-->
-        id, `name`, project_id, node
-    </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-        <!--@mbg.generated-->
-        select
-        <include refid="Base_Column_List"/>
-        from test
-        where id = #{id}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        <!--@mbg.generated-->
-        delete
-        from test
-        where id = #{id}
-    </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ink.bigdata.bean.Test"
-            useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into test (`name`, project_id, node)
-        values (#{name}, #{projectId}, #{node})
-    </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ink.bigdata.bean.Test"
-            useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into test
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="name != null">
-                `name`,
-            </if>
-            <if test="projectId != null">
-                project_id,
-            </if>
-            <if test="node != null">
-                node,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="name != null">
-                #{name},
-            </if>
-            <if test="projectId != null">
-                #{projectId},
-            </if>
-            <if test="node != null">
-                #{node},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ink.bigdata.bean.Test">
-        <!--@mbg.generated-->
-        update test
-        <set>
-            <if test="name != null">
-                `name` = #{name},
-            </if>
-            <if test="projectId != null">
-                project_id = #{projectId},
-            </if>
-            <if test="node != null">
-                node = #{node},
-            </if>
-        </set>
-        where id = #{id}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.ink.bigdata.bean.Test">
-        <!--@mbg.generated-->
-        update test
-        set `name`     = #{name},
-            project_id = #{projectId},
-            node       = #{node}
-        where id = #{id}
-    </update>
+  <resultMap id="BaseResultMap" type="com.ink.bigdata.bean.Test">
+    <!--@mbg.generated-->
+    <!--@Table test-->
+    <id column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="project_id" property="projectId" />
+    <result column="node" property="node" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, project_id, node
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from test
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from test
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ink.bigdata.bean.Test" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into test (`name`, project_id, node)
+    values (#{name}, #{projectId}, #{node})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ink.bigdata.bean.Test" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="node != null">
+        node,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name},
+      </if>
+      <if test="projectId != null">
+        #{projectId},
+      </if>
+      <if test="node != null">
+        #{node},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ink.bigdata.bean.Test">
+    <!--@mbg.generated-->
+    update test
+    <set>
+      <if test="name != null">
+        `name` = #{name},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId},
+      </if>
+      <if test="node != null">
+        node = #{node},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ink.bigdata.bean.Test">
+    <!--@mbg.generated-->
+    update test
+    set `name` = #{name},
+      project_id = #{projectId},
+      node = #{node}
+    where id = #{id}
+  </update>
 
     <!--auto generated by MybatisCodeHelper on 2022-04-24-->
     <select id="getAll" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from test
     </select>
 
@@ -113,23 +110,39 @@
 
     <select id="selectFirstNode" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         FROM
         test
         WHERE
-        project_id = 1
+        project_id = #{projectId}
         ORDER BY
-        cast(node AS UNSIGNED) ASC LIMIT 1
+        node ASC LIMIT 1
     </select>
 
     <select id="selectLastNode" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         FROM
         test
         WHERE
-        project_id = 1
+        project_id = #{projectId}
         ORDER BY
-        cast(node AS UNSIGNED) DESC LIMIT 1
+        node DESC LIMIT 1
+    </select>
+
+<!--auto generated by MybatisCodeHelper on 2022-04-25-->
+    <select id="selectByProjectId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from test
+        where project_id=#{projectId}
+        order by node asc
+    </select>
+
+<!--auto generated by MybatisCodeHelper on 2022-04-25-->
+  <select id="selectNodeById" resultType="java.lang.Long">
+        select node
+        from test
+        where id=#{id}
     </select>
 </mapper>

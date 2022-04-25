@@ -6,11 +6,13 @@ import lombok.Data;
 public class AcrossReqVO {
     private Long curId;
 
-    private String preNode;
+    private Long preId;
 
-    private String nextNode;
+    private Long nextId;
 
-    private Boolean isFirst;
+    private Boolean toFirst;
 
-    private Boolean isLast;
+    private Boolean toLast;
+
+    private Long projectId;
 }

@@ -10,5 +10,5 @@ public class Test {
 
     private Long projectId;
 
-    private String node;
+    private Long node;
 }

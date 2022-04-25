@@ -1,6 +1,7 @@
 package com.ink.bigdata.mapper;
 
 import com.ink.bigdata.bean.Test;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,5 +24,11 @@ public interface TestMapper {
 
     int batchUpdateV2(List<Test> list);
 
+    Test selectFirstNode(@Param("projectId") Long projectId);
 
+    Test selectLastNode(@Param("projectId") Long projectId);
+
+    List<Test> selectByProjectId(@Param("projectId") Long projectId);
+
+    Long selectNodeById(@Param("id") Long id);
 }

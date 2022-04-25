@@ -53,6 +53,19 @@ public class TestController {
         return "ok";
     }
 
+    @GetMapping("/set2")
+    @Transactional(rollbackFor = Exception.class)
+    public String set2() {
+        List<Test> list = testMapper.getAll();
+        Map<Long, List<Test>> projectMap = list.stream().collect(Collectors.groupingBy(Test::getProjectId));
+        long l = System.currentTimeMillis();
+        for (Long projectId : projectMap.keySet()) {
+            testMapper.reset_node(projectId);
+        }
+        log.info(String.valueOf((System.currentTimeMillis() - l) / 1000d));
+        return "ok";
+    }
+
 
     private long reset(Long projectId) {
         List<Test> list = testMapper.selectByProjectId(projectId);

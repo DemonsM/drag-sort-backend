@@ -108,6 +108,10 @@
         ON DUPLICATE KEY UPDATE id = VALUES (id), project_id = VALUES(project_id) ,node = VALUES (node)
     </insert>
 
+    <update id="reset_node" parameterType="Long" statementType="CALLABLE">
+        {call reset_node(#{projectId})}
+    </update>
+
     <select id="selectFirstNode" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List" />

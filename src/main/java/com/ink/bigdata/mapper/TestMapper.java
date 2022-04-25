@@ -31,4 +31,6 @@ public interface TestMapper {
     List<Test> selectByProjectId(@Param("projectId") Long projectId);
 
     Long selectNodeById(@Param("id") Long id);
+
+    int reset_node(@Param("projectId") Long projectId);
 }

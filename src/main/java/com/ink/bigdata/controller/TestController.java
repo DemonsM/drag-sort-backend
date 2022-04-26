@@ -1,6 +1,8 @@
 package com.ink.bigdata.controller;
 
 import cn.hutool.core.collection.ListUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ink.bigdata.bean.Test;
 import com.ink.bigdata.bean.vo.AcrossReqVO;
 import com.ink.bigdata.mapper.TestMapper;
@@ -29,8 +31,20 @@ public class TestController {
     private TestMapper testMapper;
 
     @GetMapping("/get-all")
-    public List<Test> getAll() {
-        return testMapper.getAll();
+    public List<Test> getAll(Long projectId) {
+        return testMapper.getAllByProjectId(projectId);
+    }
+
+    @GetMapping("/get-all-page")
+    public PageInfo<Test> getAllPage(Long projectId, Integer pageNum, Integer pageSize) {
+        log.info("分页");
+        //PageHelper.startPage(pageNum, pageSize).doSelectPage(() -> testMapper.getAll());
+        return PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> testMapper.getAllByProjectId(projectId));
+    }
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello world";
     }
 
     @GetMapping("/set")

@@ -18,6 +18,8 @@ public interface TestMapper {
 
     int updateByPrimaryKey(Test record);
 
+    List<Test> getAllByProjectId(@Param("projectId") Long projectId);
+
     List<Test> getAll();
 
     int batchUpdateV1(List<Test> list);

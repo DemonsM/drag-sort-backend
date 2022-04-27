@@ -11,7 +11,7 @@ spring:
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource  #当前数据源操作类型
-    #以下省略druid的监控的一些配置。
+  weblog: true
 
 mybatis:
   #匹配sql语句的映射文件的位置，classpat代表在resources下

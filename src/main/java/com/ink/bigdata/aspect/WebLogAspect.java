@@ -10,6 +10,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -29,6 +30,7 @@ import java.util.Objects;
 @Aspect
 @Component
 @Order(1)
+@ConditionalOnProperty(value = "spring.weblog", havingValue = "true")
 public class WebLogAspect {
     private static final String LINE_SEPARATOR = System.lineSeparator();
 

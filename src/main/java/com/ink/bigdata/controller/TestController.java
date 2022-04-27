@@ -3,6 +3,7 @@ package com.ink.bigdata.controller;
 import cn.hutool.core.collection.ListUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.gson.Gson;
 import com.ink.bigdata.bean.Test;
 import com.ink.bigdata.bean.vo.AcrossReqVO;
 import com.ink.bigdata.mapper.TestMapper;
@@ -40,6 +41,12 @@ public class TestController {
         log.info("分页");
         //PageHelper.startPage(pageNum, pageSize).doSelectPage(() -> testMapper.getAll());
         return PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> testMapper.getAllByProjectId(projectId));
+    }
+
+    @PostMapping("/test/get-body")
+    public String getBody(Test test) {
+        log.info(new Gson().toJson(test));
+        return "test";
     }
 
     @GetMapping("/hello")
